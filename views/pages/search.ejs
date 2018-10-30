@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/DateTimePicker.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span12">
+                <ul class="nav nav-tabs">
+                    <li>
+                        <a href="/pages/home">Home</a>
+                    </li>
+                    <li class="active">
+                        <a href="/pages/search">Search</a>
+                    </li>
+                    <li>
+                        <a href="/pages/create">Create</a>
+                    </li>
+                    <li>
+                        <a href="/pages/admin">Admin</a>
+                    </li>
+                </ul>
+                <div class="page-header" style='background-color:#E9ECEF;padding:60px'>
+                    <h1>
+                        Event Management System<br /> <small>HKBU Event Management System is a web-based system for
+                            department and student societies to broadcast events and activities as well as
+                            registration.</small>
+                    </h1>
+                </div>
+                <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        <li>
+                            <a href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li>
+                            <a href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="row">
+                    <div class="col-md-6">
+                        <table class="table" contenteditable="true">
+                            <tbody>
+                                <tr>
+                                    <td width='50%' id='list_0' class='list_'>
+                                    </td>
+                                    <td width='50%' id='list_1' class='list_'>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Event Name:</label>
+                            <input type="text" class="form-control" placeholder="Type something…">
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Organizer:</label>
+                            <select class="form-control">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-group center-block">
+                                <label>Start Date:</label>
+                                <input type="datetime" id="t_time" readonly>
+                                <div id="dtBox"></div>
+                            </div>
+                        </div>
+                        <div class="form-group center-block">
+                            <label>End Date:</label>
+                            <input type="datetime" id="t_time" readonly>
+                            <div id="dtBox"></div>
+                        </div>
+                        <div class="form-group center-block">
+                            <label for="name">Venue:</label>
+                            <select class="form-control center-block">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                        <button type="button" class="btn btn-info">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style='display:none'>
+        <div id='temp'>
+            <div class="center-block">
+                <img alt="150x200" src="" width='50%' class='img_' />
+            </div>
+            <div class="center-block">
+                <h2 class="text-primary title_"></h2>
+            </div>
+            <div class="center-block">
+                <h4 class='content_'></h4>
+            </div>
+        </div>
+        <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+        <script type="text/javascript" src="js/DateTimePicker.js"></script>
+        <script>
+            $(function () {
+                var id_;
+                $("#dtBox").DateTimePicker();
+                Get_data();
+                $('.list_').click(function () {
+                    window.open('event_detail.html?id=' + id_);
+                });
+
+            });
+            function Get_data() {
+                //获取表单数据，目前是假数据
+                var list_data = [
+                    { id: '', title: 'Singing Contest', content: '一年一度既 HKBU Singing Contes又到喇！身為浸大人既你點可能錯過!?無論你係咩系、 Bachelor/ AD Programme,我地都歡迎你報名!身邊有唱得之人就梗係要推虅但黎喇！', src: 'img/p1.png' },
+                    { id: '', title: 'Culture and Politics in European Cinema', content: 'Michael Balcon and Twentieth Century British Cinema: Art, Industry and National Culture.', src: 'img/p2.png' },
+                    { id: '', title: 'Workshop on Design for Sustainability', content: 'Design green partnership agreement between Kyoto, Tainan and Hong Kong.', src: 'img/p3.png' },
+                    { id: '', title: 'Smarter Hong Kong, Smarter Living', content: 'Open Data access and its usage become important and crucial issues for driving Hong Kong to be a Smart City.', src: 'img/p4.png' }
+                ];
+                for (var x = 0; x <= 1; x++) {
+                    var o = $("#temp").clone().attr("id", "").appendTo("#list_" + x);
+                    $(o).find(".title_").eq(0).text(list_data[x].title);
+                    $(o).find(".content_").eq(0).text(list_data[x].content);
+                    $(o).find(".img_").eq(0).attr("src", list_data[x].src);
+                }
+            }
+        </script>
+</body>
+
+</html>

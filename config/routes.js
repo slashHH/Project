@@ -9,8 +9,10 @@
  */
 
 module.exports.routes = {
-  'GET /pages/detail': 'PersonController.view',
-
+  'GET /pages/home': 'HomeController.view',
+  'GET /pages/admin': 'AdminController.view',
+  'GET /pages/create': 'CreateController.view',
+  'GET /pages/search': 'SearchController.view',
   //  ╦ ╦╔═╗╔╗ ╔═╗╔═╗╔═╗╔═╗╔═╗
   //  ║║║║╣ ╠╩╗╠═╝╠═╣║ ╦║╣ ╚═╗
   //  ╚╩╝╚═╝╚═╝╩  ╩ ╩╚═╝╚═╝╚═╝
