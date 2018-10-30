@@ -9,7 +9,7 @@
  */
 
 module.exports.routes = {
-
+  'GET /pages/detail': 'PersonController.view',
 
   //  ╦ ╦╔═╗╔╗ ╔═╗╔═╗╔═╗╔═╗╔═╗
   //  ║║║║╣ ╠╩╗╠═╝╠═╣║ ╦║╣ ╚═╗
