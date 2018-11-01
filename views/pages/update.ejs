@@ -1,0 +1,96 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link" href="/pages/home">Home<span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="/pages/search">Search</a>
+            <a class="nav-item nav-link active" href="/pages/create">Create</a>
+            <a class="nav-item nav-link" href="/pages/admin">Admin</a>
+        </div>
+    </div>
+</nav>
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">Event Management System</h1>
+        <p class="lead">HKBU Event Management System is a web-based system for department and student societies to
+            broadcast events and activities as well as registration.
+        </p>
+    </div>
+</div>
+<form action="/event/update/<%= event.id %>" method="POST">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label>Event Name:</label>
+                <input type="text" class="form-control" name="Event[name]" value="<%= event.name %>" required>
+            </div>
+            <div class="form-group">
+                <label>Short Description:</label>
+                <textarea type="text" class="form-control" style="height:180px" name="Event[short_description]" required><%= event.short_description %></textarea>
+            </div>
+            <div class="form-group">
+                <label>Full Description:</label>
+                <textarea type="text" class="form-control" style="height:250px" name="Event[full_description]" required> <%= event.full_description %></textarea>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label>Image URL:</label>
+                <input type="text" class="form-control" name="Event[image_url]" value="<%= event.image_url %>" required>
+            </div>
+            <div class="form-group">
+                <label>Organizer:</label>
+                <select class="form-control" name="Event[organizer]" required>
+                    <option value="defalut" disabled selected hidden>
+                        <%= event.organizer %>
+                    </option>
+                    <option value="department">department</option>
+                    <option value="societies">student societies</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Event Date:</label>
+                <input type="text" class="form-control" name="Event[event_date]" value="<%= event.eventDate %>" required>
+            </div>
+            <div class="form-group">
+                <label>Time:</label>
+                <input type="text" class="form-control" name="Event[time]" value="<%= event.time %>" required>
+            </div>
+            <div class="form-group">
+                <label>Venue:</label>
+                <select class="form-control" name="Event[venue]" required>
+                    <option value="defalut" disabled selected hidden>
+                        <%= event.venue %>
+                    </option>
+                    <option value="AC">AC Hall</option>
+                    <option value="AAB">AAB</option>
+                    <option value="OEE">OEE</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Quota:</label>
+                <input type="number" class="form-control" name="Event[quota]" value=<%=event.quota %> required>
+            </div>
+
+            <% if(event.highlighted=="on"){%>
+            <div class="form-group">
+                <input type="checkbox" name="Event[highlighted]" checked="checked">
+                <label>Highlighted Event</label>
+            </div>
+            <% } else{%>
+            <div class="form-group">
+                <input type="checkbox" name="Event[highlighted]">
+                <label>Highlighted Event</label>
+            </div>
+            <% };%>
+            <button type="submit" class="btn btn-primary">Update</button>
+        </div>
+    </div>
+</form>
+<form action="/pages/delete/<%= event.id %>" method="POST">
+    <button type="submit" class="btn btn-danger">Delete</button>
+</form>

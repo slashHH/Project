@@ -1,117 +1,76 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="css/DateTimePicker.css">
-  </head>
-<body>
-<div class="container-fluid">
-	<div class="row-fluid">
-		<div class="span12">
-			<ul class="nav nav-tabs">
-				<li>
-					<a href="index.html">Home</a>
-				</li>
-				<li>
-					<a href="search.html">Search</a>
-				</li>
-				<li class="active">
-					<a href="create.html">Create</a>
-				</li>
-				<li>
-					<a href="admin.html">Admin</a>
-				</li>
-			</ul>
-			<div class="page-header" style='background-color:#E9ECEF;padding:60px'>
-				<h1>
-					Event Management System<br /> <small>HKBU Event Management System is a web-based system for department and student societies to broadcast events and activities as well as registration.</small>
-				</h1>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+	 aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+		<div class="navbar-nav">
+			<a class="nav-item nav-link active" href="/pages/index">Home<span class="sr-only">(current)</span></a>
+			<a class="nav-item nav-link" href="/pages/search">Search</a>
+			<a class="nav-item nav-link" href="/pages/create">Create</a>
+			<a class="nav-item nav-link" href="/pages/admin">Admin</a>
+		</div>
+	</div>
+</nav>
+
+<div class="jumbotron jumbotron-fluid">
+	<div class="container">
+		<h1 class="display-4">Event Management System</h1>
+		<p class="lead">HKBU Event Management System is a web-based system for department and student societies to
+			broadcast events and activities as well as registration.
+		</p>
+	</div>
+</div>
+
+<div class="container" style="padding:10px 10px 10px 10px">
+
+	<div class="card col-sm-12" style="padding:10px 10px 10px 10px">
+		<h4>
+			<%= event.name %>
+		</h4>
+		<div class="row" style="margin:10px 10px 10px 10px">
+
+			<img class="col-sm-4" height="400px" src="<%= event.imageURL %>" alt="Card image">
+
+			<div class="container col-sm-8">
+				<div class="card" style="padding:10px 10px 10px 10px">
+					<p class="card-text">
+						<%= event.fullDescription %>
+					</p>
+				</div>
+				<div class="card" style="padding:10px 10px 10px 10px">
+					<p class="card-text">
+						Organizer:
+						<%= event.organizer %>
+					</p>
+				</div>
+				<div class="card" style="padding:10px 10px 10px 10px">
+					<p class="card-text">
+						Date:
+						<%= event.eventDate %>
+					</p>
+				</div>
+				<div class="card" style="padding:10px 10px 10px 10px">
+					<p class="card-text">
+						Time:
+						<%= event.time %>
+					</p>
+				</div>
+				<div class="card" style="padding:10px 10px 10px 10px">
+					<p class="card-text">
+						Venue:
+						<%= event.venue %>
+					</p>
+				</div>
+
+				<div class="card" style="padding:10px 10px 10px 10px">
+					<p class="card-text">
+						Quota:
+						<%= event.quota %>
+					</p>
+				</div>
+
 			</div>
-			<form>
-			<div class="row">
-				  <div class="col-md-6">
-					<div class="form-group">
-					 <label>Event Name:</label>
-						<input type="text" class="form-control"  placeholder="Type something…">
-					 </label>
-					 </div>
-					  <div class="form-group">
-					 <label>Short Description:</label>
-					   <textarea class="form-control" rows="3"  placeholder="Type something…"></textarea>
-					 </label>
-					 </div>
-					  <div class="form-group">
-					 <label>Full Description:</label>
-					   <textarea class="form-control" rows="5"  placeholder="Type something…"></textarea>
-					 </label>
-					 </div>
-					  <button type="button" class="btn btn-danger" onclick='Delete_()'>Delete</button>
-				  </div>
-				  <div class="col-md-6" >
-				     <div class="form-group">
-							<label for="exampleInputFile">Image URL:</label>
-							<input type="text" class="form-control"  placeholder="Type something…">
-						  </div>
-							<div class="form-group">
-							<label for="name">Organizer:</label>
-							<select class="form-control">
-							  <option>1</option>
-							  <option>2</option>
-							  <option>3</option>
-							  <option>4</option>
-							  <option>5</option>
-							</select>
-						  </div>
-						  <div class="form-group">
-							<div class="form-group center-block" >
-								 <label>Event Date:</label>
-								<input type="datetime" id="t_time" readonly>
-								<div id="dtBox"></div>
-							</div>
-						 </div>
-						   <div class="form-group">
-							<label for="name">Venue:</label>
-							<select class="form-control">
-							  <option>1</option>
-							  <option>2</option>
-							  <option>3</option>
-							  <option>4</option>
-							  <option>5</option>
-							</select>
-						  </div>
-						  <div class="checkbox">
-							<label>
-							  <input type="checkbox"> Hlightlighted Event
-							</label>
-						  </div>
-						  <button type="button" class="btn btn-info" onclick='Submit_()'>Submit</button>
-				  </div>
-			</div>
-			
-			  
-			</form>
 		</div>
 	</div>
 </div>
-<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script type="text/javascript" src="js/DateTimePicker.js"></script>
-<script>
-$(function(){
-	$("#dtBox").DateTimePicker();
-	Get_data();
-});
-function Get_data(){
-//获取列表
-}
-function Submit_(){
-//提交请求
-}
-function Delete_(){
-//删除请求
-}
-</script>
-</body>
-</html>

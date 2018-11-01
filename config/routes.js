@@ -9,10 +9,13 @@
  */
 
 module.exports.routes = {
-  'GET /pages/home': 'HomeController.view',
-  'GET /pages/admin': 'AdminController.view',
+  'GET /pages/home': 'HomeController.home',
+  'GET /pages/admin': 'AdminController.admin',
   'GET /pages/create': 'CreateController.view',
   'GET /pages/search': 'SearchController.view',
+  'GET /pages/create': 'CreateController.create',
+  'POST /pages/create': 'CreateController.create',
+  'GET /pages/admin': 'AdminController.detail',
   //  ╦ ╦╔═╗╔╗ ╔═╗╔═╗╔═╗╔═╗╔═╗
   //  ║║║║╣ ╠╩╗╠═╝╠═╣║ ╦║╣ ╚═╗
   //  ╚╩╝╚═╝╚═╝╩  ╩ ╩╚═╝╚═╝╚═╝
@@ -27,7 +30,7 @@ module.exports.routes = {
   ***************************************************************************/
 
   '/': {
-    view: 'pages/homepage'
+    view: 'pages/home'
   },
 
   /***************************************************************************

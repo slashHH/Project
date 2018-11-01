@@ -7,9 +7,24 @@
 
 module.exports = {
 
-    view: async function (req, res) {
-        return res.view('pages/home', {});
+
+    home: async function (req, res) {
+
+        var models = await Event.find();
+        return res.view('pages/home', { events: models });
+
     },
+    detail: async function (req, res) {
 
-};
+        var message = Event.getInvalidIdMsg(req.params);
 
+        if (message) return res.badRequest(message);
+
+        var model = await Event.findOne(req.params.id);
+
+        if (!model) return res.notFound();
+
+        return res.view('pages/detail', { event: model });
+
+    },
+}

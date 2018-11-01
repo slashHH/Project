@@ -6,10 +6,9 @@
  */
 
 module.exports = {
-
-    view: async function (req, res) {
-        return res.view('pages/admin', {});
+    admin: async function (req, res) {
+        var models = await Event.find({ sort: 'id ASC' });
+        return res.view('event/admin', { events: models })
     },
-
 };
 

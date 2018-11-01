@@ -1,0 +1,93 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+	 aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+		<div class="navbar-nav">
+			<a class="nav-item nav-link" href="/pages/home">Home <span class="sr-only">(current)</span></a>
+			<a class="nav-item nav-link active" href="/pages/search">Search</a>
+			<a class="nav-item nav-link" href="/pages/create">Create</a>
+			<a class="nav-item nav-link" href="/pages/admin">Admin</a>
+		</div>
+	</div>
+</nav>
+<div class="jumbotron jumbotron-fluid">
+	<div class="container">
+		<h1 class="display-4">Event Management System</h1>
+		<p class="lead">HKBU Event Management System is a web-based system for department and student societies to
+			broadcast events and activities as well as registration.
+		</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-sm-8">
+		<% const current = parseInt(req.query.page) || 1; %>
+		<nav aria-label="Page navigation example">
+			<ul class="pagination">
+				<li class="page-item">
+					<a class="page-link" href="/event/condition/?page=<%= Math.max(current-1, 1) %>">Previous</a>
+				</li>
+				<% for (i = 1; i <= count; i++) { %>
+				<li class="page-item">
+					<a class="page-link" href="/event/condition/?page=<%= i %>">
+						<%= i %></a>
+				</li>
+				<% } %>
+				<li class="page-item">
+					<a class="page-link" href="/event/condition/?page=<%= Math.min(current+1, count) %>">Next</a>
+				</li>
+			</ul>
+		</nav>
+		<div class="row">
+			<% events.forEach( function(model) { %>
+			<div class="card col-sm-6">
+				<img class="card-img-top" src="<%= model.imageURL %>" alt="Card image">
+				<div class="card-body">
+					<h5> <a href="/event/detail/<%= model.id %>" class="text">
+							<%= model.name %></a></h5>
+					<p class="card-text">
+						<%= model.shortDescription %>
+					</p>
+				</div>
+			</div>
+			<% }); %>
+		</div>
+	</div>
+
+
+	<div class="col-sm-4">
+		<form action="/event/condition" method="POST">
+			<div class="form-group">
+				<label>Event Name:</label>
+				<input type="text" class="form-control" name="Search[name]">
+			</div>
+			<div class="form-group">
+				<label>Organizer:</label>
+				<select class="form-control" name="Search[organizer]">
+					<option value="defalut" disabled selected hidden>Please pick one:</option>
+					<option value="department">department</option>
+					<option value="societies">student societies</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label>Start Date:</label>
+				<input type="text" class="form-control" name="Search[eventDate]">
+			</div>
+			<div class="form-group">
+				<label>End Date:</label>
+				<input type="text" class="form-control" name="Search[time]">
+			</div>
+			<div class="form-group">
+				<label>Venue:</label>
+				<select class="form-control" name="Search[venue]">
+					<option value="defalut" disabled selected hidden>Please pick one:</option>
+					<option value="AC">AC Hall</option>
+					<option value="AAB">AAB</option>
+					<option value="OEE">OEE</option>
+				</select>
+			</div>
+			<button type="submit" class="btn">Submit</button>
+		</form>
+	</div>
+</div>
